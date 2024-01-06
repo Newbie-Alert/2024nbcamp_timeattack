@@ -110,6 +110,25 @@ const NickNameMessage = styled.p`
   font-size: 0.8rem;
 `;
 
+const GoSignInButton = styled.button.attrs({
+  type: "button",
+})`
+  width: 100%;
+  padding: 1rem;
+  border-radius: 9px;
+  outline: none;
+  border: none;
+  background-color: #27272750;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #272727;
+    color: white;
+  }
+`;
+
 export {
   SignUpBody,
   SignUpContainer,
@@ -122,4 +141,5 @@ export {
   AlertMessage,
   ErrorMessage,
   NickNameMessage,
+  GoSignInButton,
 };

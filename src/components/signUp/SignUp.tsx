@@ -147,6 +147,9 @@ export default function SignUp() {
         <St.SubmitButton $isAblePassword={isAblePassword} $isPassed={isPassed}>
           회원가입
         </St.SubmitButton>
+        <St.GoSignInButton onClick={() => navi("/")}>
+          로그인 화면으로
+        </St.GoSignInButton>
       </St.SignUpContainer>
     </St.SignUpBody>
   );
