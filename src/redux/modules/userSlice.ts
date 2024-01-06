@@ -8,7 +8,7 @@ export interface UserState {
     nickname: string;
     avatar: string;
     success: boolean | null;
-    acessToken: string;
+    accessToken: string;
     userId: string;
   };
 }
@@ -17,7 +17,7 @@ export interface UserState {
 const initialState: UserState = {
   userInfo: {
     nickname: "",
-    acessToken: "",
+    accessToken: "",
     avatar: "",
     userId: "",
     success: null,
@@ -27,22 +27,26 @@ const initialState: UserState = {
 // reducer
 export const userSlice = createSlice({
   name: "userInfo",
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     setInfo: (state, action: PayloadAction<UserState>) => {
-      console.log(action);
-      state.userInfo.acessToken = action.payload.userInfo.acessToken;
-      state.userInfo.nickname = action.payload.userInfo.nickname;
-      state.userInfo.avatar = action.payload.userInfo.avatar;
-      state.userInfo.success = action.payload.userInfo.success;
-      state.userInfo.userId = action.payload.userInfo.userId;
+      state.userInfo = { ...state.userInfo, ...action.payload };
+    },
+    logout: (state) => {
+      state.userInfo = {
+        ...state.userInfo,
+        nickname: "",
+        accessToken: "",
+        avatar: "",
+        userId: "",
+        success: null,
+      };
     },
   },
 });
 
 // 생성한 reducer export
-export const { setInfo } = userSlice.actions;
+export const { setInfo, logout } = userSlice.actions;
 
 // 컴포넌트에서 countSlice를 가져오고 싶을 때 사용 할 Hook을 export
 export const selectUser = (state: RootState) => state.user;

@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { signIn } from "../../api/user";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { setInfo } from "../../redux/modules/userSlice";
+import { logout, setInfo } from "../../redux/modules/userSlice";
 import * as St from "./styles";
 
 type UserInput = {
@@ -10,13 +10,14 @@ type UserInput = {
   password: string;
 };
 
-export default function SignIn() {
+export default function SignIn({ loginedUser }: any) {
   // States
   const [userInput, setUserInput] = useState<UserInput>({
     id: "",
     password: "",
   });
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [isLogined, setIsLogined] = useState<boolean>(false);
 
   // Hooks
   const dispatch = useAppDispatch();
@@ -42,7 +43,7 @@ export default function SignIn() {
       const resp = await signIn(userInput);
       alert("로그인 성공");
       dispatch(setInfo(resp));
-      navi("/");
+      navi("/", { replace: true });
     } catch (err: any) {
       setErrorMsg(err.response?.data.message);
     }
@@ -58,7 +59,22 @@ export default function SignIn() {
         id: signUpUserId ?? prev.id,
       }));
     }
-  }, []);
+    if (loginedUser.userInfo.success) {
+      setIsLogined(true);
+    }
+  }, [loginedUser]);
+
+  if (loginedUser.userInfo.success)
+    return (
+      <St.SignInBody>
+        <St.SignInContainer onSubmit={handleSubmit}>
+          <h1>환영합니다아</h1>
+          <St.SubmitButton onClick={() => dispatch(logout())}>
+            로그아웃
+          </St.SubmitButton>
+        </St.SignInContainer>
+      </St.SignInBody>
+    );
 
   return (
     <St.SignInBody>
