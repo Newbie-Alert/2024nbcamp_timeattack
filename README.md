@@ -19,3 +19,14 @@
 
 3. 회원가입 후 로그인 페이지로 리다이렉트 될 시
    회원가입에 사용한 아이디가 input에 바로 기입되도록 하였습니다.
+
+
+## 실행 방법
+1. 의존성 패키지를 설치
+> npm i
+
+2. json-server 실행
+> json-server --watch db.json --port 8080
+
+3. 프로젝트 실행
+> npm start
