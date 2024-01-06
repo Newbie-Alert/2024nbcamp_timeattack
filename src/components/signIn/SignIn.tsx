@@ -64,7 +64,7 @@ export default function SignIn({ loginedUser }: any) {
     }
   }, [loginedUser]);
 
-  if (isLogined)
+  if (loginedUser?.userInfo?.success)
     return (
       <St.SignInBody>
         <St.SignInContainer onSubmit={handleSubmit}>
