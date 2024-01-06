@@ -13,10 +13,16 @@ export default function Router() {
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<SignIn loginedUser={loginedUser} />} />
+        <Route
+          path="/"
+          element={<SignIn loginedUser={loginedUser.userInfo} />}
+        />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/find" element={<FindPW />} />
-        <Route path="/*" element={<SignIn loginedUser={loginedUser} />} />
+        <Route
+          path="/*"
+          element={<SignIn loginedUser={loginedUser.userInfo} />}
+        />
       </Routes>
     </BrowserRouter>
   );

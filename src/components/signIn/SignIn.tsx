@@ -59,12 +59,12 @@ export default function SignIn({ loginedUser }: any) {
         id: signUpUserId ?? prev.id,
       }));
     }
-    if (loginedUser.userInfo.success) {
+    if (loginedUser?.userInfo?.success) {
       setIsLogined(true);
     }
   }, [loginedUser]);
 
-  if (loginedUser.userInfo.success)
+  if (isLogined)
     return (
       <St.SignInBody>
         <St.SignInContainer onSubmit={handleSubmit}>
